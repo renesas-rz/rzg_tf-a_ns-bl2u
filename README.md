@@ -38,8 +38,8 @@ The following table shows the document related to this function.
 
 | Number | Issuer  | Title                                                          | Edition           |
 |--------|---------|----------------------------------------------------------------|-------------------|
-| 1      | Renesas | RZ/G2 Trusted Execution Environment Start-Up Guide             | Rev.1.00 or later |
-| 2      | Renesas | RZ/G2 Trusted Execution Environment Porting Guide              | Rev.1.00 or later |
+| 1      | Renesas | RZ/G2 Trusted Execution Environment Start-Up Guide             | Rev.1.10 or later |
+| 2      | Renesas | RZ/G2 Trusted Execution Environment Porting Guide              | Rev.1.10 or later |
 
 
 ## 2. Operating Environment
@@ -123,7 +123,7 @@ In the Firmware Update implementation on TEE for RZ/G2 environment, TF-A NS_BL2U
 
 ## 4. Revision history
 
-Describe the revision history of RZ/G Security Module.
+Describe the revision history of RZ/G TF-A NS_BL2U.
 
 ### 4.1. v1.00
 

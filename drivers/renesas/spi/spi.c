@@ -14,7 +14,7 @@
 
 static void spi_write_buff(uint64_t buff, uint32_t spi_addr, uint32_t len);
 static void spi_erase_1sector(uint32_t sec_addr);
-uint8_t page_fraction_buff[QSPI_PAGE_SIZE] = {0};
+uint32_t page_fraction_buff[QSPI_PAGE_SIZE/4] = {0};
 
 int32_t rzg_spi_write_buff(uint32_t spi_addr, uint64_t buff, uint32_t len)
 {
@@ -95,25 +95,27 @@ static void spi_write_buff(uint64_t buff, uint32_t spi_addr, uint32_t len)
 {
     uint32_t flash_addr;
     uint32_t status;
-    uint32_t page_fraction_len;
+    uint32_t fraction_len;
+    uint8_t *fraction_buff;
 
-    page_fraction_len = len;
-
-    for (int i = 0; i < QSPI_PAGE_SIZE; i++)
+    for (int i = 0; i < (QSPI_PAGE_SIZE/4); i++)
     {
-        page_fraction_buff[i] = 0xFF;
+        page_fraction_buff[i] = 0xFFFFFFFF;
     }
+
+    fraction_buff = &page_fraction_buff;
+    fraction_len = len;
 
     for (flash_addr = spi_addr; flash_addr < (spi_addr + len); flash_addr += 256)
     {
-        if (256 > page_fraction_len)
+        if (QSPI_PAGE_SIZE > fraction_len)
         {
-            for (uint32_t i = 0; i < page_fraction_len; i++)
+            for (uint32_t i = 0; i < fraction_len; i++)
             {
-                page_fraction_buff[i] = *(volatile uint8_t *)(buff + i);
+                fraction_buff[i] = *(volatile uint8_t *)(buff + i);
             }
             rzg_rpc_write_cmd(0x00060000);
-            rzg_rpc_write_buff(flash_addr, (uint64_t)page_fraction_buff);
+            rzg_rpc_write_buff(flash_addr, (uint64_t)fraction_buff);
         }
         else
         {
@@ -130,6 +132,6 @@ static void spi_write_buff(uint64_t buff, uint32_t spi_addr, uint32_t len)
             }
         }
         buff = buff + 256;
-        page_fraction_len = page_fraction_len - 256;
+        fraction_len = fraction_len - 256;
     }
 }

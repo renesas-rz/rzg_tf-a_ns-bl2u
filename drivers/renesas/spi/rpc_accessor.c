@@ -130,7 +130,7 @@ void rzg_rpc_erase_sector(uint32_t sector_addr)
 	rpc_wait_trans_end();
 }
 
-void rzg_rpc_write_buff(uint32_t addr, uint32_t source_addr)
+void rzg_rpc_write_buff(uint32_t addr, uint64_t source_addr)
 {
 	uintptr_t i = 0;
 	uint32_t product;

@@ -4,7 +4,7 @@ Trusted Firmware-A(TF-A) Firmware Updater Application(NS_BL2U)
 <Div Align="right">
 Renesas Electronics Corporation
 
-Jun-30-2021
+Jul-06-2021
 </Div>
 
 
@@ -91,8 +91,7 @@ source <SDK>/environment-setup-aarch64-poky-linux
 ```bash
 $ git clone https://github.com/renesas-rz/rzg_tf-a_ns-bl2u.git
 $ cd rzg_tf-a_ns-bl2u
-$ git checkout -b v1.00
-
+$ git checkout -b v1.01
 ```
 #### 3.2.3. Build the TF-A NS_BL2U
 
@@ -128,4 +127,8 @@ Describe the revision history of RZ/G TF-A NS_BL2U.
 ### 4.1. v1.00
 
 - First release.
+
+### 4.2. v1.01
+
+- SPI driver: Fix unalignment access.
 

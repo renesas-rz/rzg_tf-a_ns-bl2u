@@ -89,7 +89,7 @@ void rzg_rpc_manual_mode_init(void);
 void rzg_rpc_read_ext_mode_init(void);
 void rzg_rpc_reset(void);
 void rzg_rpc_erase_sector(uint32_t sector_addr);
-void rzg_rpc_write_buff(uint32_t addr, uint32_t source_addr);
+void rzg_rpc_write_buff(uint32_t addr, uint64_t source_addr);
 void rzg_rpc_read_status(uint32_t *readData);
 void rzg_rpc_write_cmd(uint32_t command);
 

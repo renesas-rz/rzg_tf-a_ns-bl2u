@@ -9,6 +9,8 @@ NS_BL2U_NAME	= ns_bl2u
 VERSION_MAJOR		:= 1
 VERSION_MINOR		:= 0
 
+PLAT := rz
+
 ifneq (${DEBUG}, 0)
 	BUILD_TYPE	:=	debug
 	# Use LOG_LEVEL_INFO by default for debug builds
@@ -99,10 +101,6 @@ endef
 
 PLATFORM_MAKEFILE		:= platform.mk
 PLATFORM_ROOT			?= plat/
-
-ifeq (${PLAT},)
-	$(error "Error: Unknown platform. Please use PLAT=<platform name> to specify the platform")
-endif
 
 ALL_PLATFORM_MK_FILES       := $(call rwildcard,${PLATFORM_ROOT},${PLATFORM_MAKEFILE})
 PLAT_MAKEFILE_FULL          := $(filter %/${PLAT}/${PLATFORM_MAKEFILE},${ALL_PLATFORM_MK_FILES})
